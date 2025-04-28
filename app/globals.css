@@ -1,10 +1,17 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
+
 
 @layer base {
   :root {
       --radius: 0.5rem;
   }
+
+  button, [role="button"] {
+    cursor: pointer;
+  }
 }
+
 
 @layer utilities {
   .flex-between {
@@ -40,15 +47,15 @@
   }
 
   .text-14-normal {
-    @apply font-normal text-sm text-white-100/80;
+    @apply font-normal text-sm text-white/80;
   }
 
   .pink_container {
-    @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
+    @apply w-full bg-primary min-h-[530px] flex justify-center items-center flex-col py-10 px-6;
   }
 
   .tag {
-    @apply bg-secondary px-6 py-3 font-manrope font-bold rounded-sm uppercase relative tag-tri;
+    @apply bg-secondary px-6 py-3 font-manrope font-bold rounded-sm uppercase relative before:content-[''] before:absolute before:top-2 before:left-2 before:border-t-[10px] before:border-t-black before:border-r-[10px] before:border-r-transparent after:content-[''] after:absolute after:bottom-2 after:right-2 after:border-b-[10px] after:border-b-black after:border-l-[10px] after:border-l-transparent;
   }
 
   .heading {
