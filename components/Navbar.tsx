@@ -5,13 +5,10 @@ import Link from "next/link";
 const Navbar = async () => {
     const session = await auth();
     return (
-        <header className="px-8 py-5 bg-white drop-shadow-sm 
-        font-manrope font-medium text-sm">
+        <header className="px-12 py-5 bg-white drop-shadow-sm font-manrope font-medium text-sm">
             <nav className="flex justify-between items-center">
                 <Link href="/">
-                    <Image src="/logo.png" 
-                    width={144} height={30}
-                    alt="logo"/>
+                    <Image src="/logo.png" width={40} height={30} alt="logo"/>
                 </Link>
                 <div className="flex items-center gap-5 text-black">
                     {session && session.user ? (
@@ -20,7 +17,7 @@ const Navbar = async () => {
                                 <span>Create</span>
                             </Link>
                             <form action={async () => {
-                                "use server"
+                                "use server";
                                 await signOut({ redirectTo: "/" });
                             }}>
                                 <button type="submit">Log out</button>
@@ -33,7 +30,7 @@ const Navbar = async () => {
 
                     (
                         <form action={async () => {
-                            "use server"
+                            "use server";
                             await signIn("google")
                          }}>
                             <button type="submit">Login</button>

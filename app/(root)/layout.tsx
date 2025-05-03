@@ -1,9 +1,10 @@
-import Navbar from "../components/Navbar";
+import Navbar from "@/components/Navbar";
+
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <main className="font-manrope">
-            <Navbar />
+            <Navbar/>
             {children}
         </main>
 
