@@ -1,22 +1,17 @@
 import SearchForm from "@/components/SearchForm";
-import StickieCard from "@/components/StickieCard";
+import StickieCard, { StickieCardType } from "@/components/StickieCard";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { STICKIE_QUERY } from "@/sanity/lib/queries";
 
 
 export default async function Home({searchParams}: {searchParams: Promise<{ query?: string }>} ) {
+  
   const query = (await searchParams).query;
-  const posts = [{
-    _createdAt: new Date(),
-    views: 95,
-    author:{
-      _id: 1,
-      name: "Dharampal Singh",
-    },
-    _id: 1,
-    description: 'This is a description',
-    image: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    category: 'Electronics',
-    title: 'Lost laptop'
-  }]
+
+  const params = {search : query || null};
+
+  const {data: posts} = await sanityFetch({query: STICKIE_QUERY, params});
+
   return (
     <>
       <section className="pink_container pattern">
@@ -31,7 +26,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{ quer
           {query ? `Search results for ${query}` : "All Stickies"}
         </p>
         <ul className="mt-7 card_grid">
-          {posts?.length > 0 ? (posts.map((post: StickieCardType, index:number)=>(
+          {posts?.length > 0 ? (posts.map((post: StickieCardType)=>(
             <StickieCard key={post?._id} post={post}/>
           )))
         : (
@@ -40,6 +35,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{ quer
         }
         </ul>
       </section>
+      <SanityLive/>
     </>
   );
 }
