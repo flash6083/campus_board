@@ -16,7 +16,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{ quer
     <>
       <section className="pink_container pattern">
         <h1 className="heading">Got Something to Say? Pin It.</h1>
-        <p className="sub-heading !max-w-3xl">
+        <p className="sub-heading !max-w-3xl tracking-wider">
         From shoutouts to updates, it all lands on the Campus Board.Your thoughts, your stories — all on the Campus Board.
         </p>
         <SearchForm query={query}/>
