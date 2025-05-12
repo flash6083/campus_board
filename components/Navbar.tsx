@@ -8,9 +8,9 @@ const Navbar = async () => {
         <header className="px-12 py-5 bg-white drop-shadow-sm font-manrope font-medium text-sm">
             <nav className="flex justify-between items-center">
                 <Link href="/">
-                    <Image src="/logo.png" width={40} height={30} alt="logo"/>
+                    <Image src="/logo.png" className="w-full h-auto" width={40} height={30} alt="logo"/>
                 </Link>
-                <div className="flex items-center gap-5 text-black">
+                <div className="flex items-center gap-5 text-black sm:text-[17px] text-[12px]">
                     {session && session.user ? (
                         <>
                             <Link href="/campus/create">
