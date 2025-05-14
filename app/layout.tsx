@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner';
 import 'easymde/dist/easymde.min.css';
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
@@ -28,6 +29,12 @@ export default function RootLayout({
         className={manrope.variable}
       >
         {children}
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+          }}
+        />
       </body>
     </html>
   );
