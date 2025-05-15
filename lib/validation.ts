@@ -14,5 +14,5 @@ export const formSchema = z.object({
             return false;
         }
     }),
-    detail: z.string().min(10)
+    details: z.string().min(10)
 });

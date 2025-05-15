@@ -4,6 +4,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createStickie } from "@/lib/actions";
 import { formSchema } from "@/lib/validation";
 import MDEditor from '@uiw/react-md-editor';
 import { Send } from "lucide-react";
@@ -17,7 +18,7 @@ import { Button } from "./ui/button";
 const StickieForm = () => {
     const [errors, setErrors] = useState<Record<string, string>>({});
 
-    const [detail, setDetail] = useState<string>("");
+    const [details, setDetail] = useState<string>("");
     const router = useRouter();
 
     const handleFormSubmit = async (prevState: any, formData: FormData) => {
@@ -27,17 +28,17 @@ const StickieForm = () => {
                 description: formData.get("description") as string,
                 category: formData.get("category") as string,
                 link: formData.get("link") as string,
-                detail,
+                details,
             }
             console.log(formValues);
             await formSchema.parseAsync(formValues);
-            // const result = await creatStickie(prevState, formData, detail);
-
-            // if(result.status === 'SUCCESS'){
-            //     toast.success("Your stickie has been created successfully");
-            //     router.push(`/stickie/${result.id}`);
-            // }
-            // return result;
+            const result = await createStickie(prevState, formData, details);
+            console.log("The result is", result);
+            if(result.status === 'SUCCESS'){
+                toast.success("Your stickie has been created successfully");
+                router.push(`/board/${result._id}`);
+            }
+            return result;
         }
         catch(error){
             if(error instanceof z.ZodError){
@@ -137,14 +138,14 @@ const StickieForm = () => {
             </div>
             
             <div data-color-mode="light">
-                <label htmlFor="detail"
+                <label htmlFor="details"
                 className="startup-form_label">
-                    Detail
+                    Details
                 </label>
                 <MDEditor
-                    value={detail}
+                    value={details}
                     onChange={(value?: string) => setDetail(value ?? '')}
-                    id="detail"
+                    id="details"
                     preview="edit"
                     height={300}
                     style={{borderRadius: 20, overflow: "hidden"}}
