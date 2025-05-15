@@ -1,7 +1,8 @@
-import type { StructureResolver } from 'sanity/structure'
+// import type {  StructureBuilder } from 'sanity/structure'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
-export const structure: StructureResolver = (S) =>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const structure = (S: any) =>
   S.list()
     .title('Content')
     .items([
