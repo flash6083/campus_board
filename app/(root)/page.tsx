@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+
 import SearchForm from "@/components/SearchForm";
 import StickieCard, { StickieCardType } from "@/components/StickieCard";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
@@ -13,8 +13,6 @@ export default async function Home({searchParams}: {searchParams: Promise<{ quer
 
   const {data: posts} = await sanityFetch({query: STICKIE_QUERY, params});
 
-  const session = await auth();
-  console.log("Session id is:", session?.user?.id);
 
   return (
     <>

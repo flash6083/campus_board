@@ -1,9 +1,11 @@
-import { formatDate } from "@/lib/utils";
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+import { cn, formatDate } from "@/lib/utils";
 import { Author, Stickie } from "@/sanity/types";
 import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
 
 
 export type StickieCardType = Omit<Stickie, "author"> & {author?: Author}
@@ -37,7 +39,7 @@ const StickieCard = ({post}:{post: StickieCardType}) => {
           </Link>
         </div>
         <Link href={`/user/${author?._id}`}>
-          <Image src="https://placehold.co/48x48" alt="placeholder" width={48} height={48}
+          <Image src={author?.image!} alt="author" width={48} height={48}
           className="rounded-full"/>
         </Link>
       </div>
@@ -45,7 +47,7 @@ const StickieCard = ({post}:{post: StickieCardType}) => {
         <p className="startup-card_desc">
           {description}
         </p>
-        <Image src={image!} alt="placeholder" width={300} height={300}
+        <Image src={image!} alt="stickie_card" width={300} height={300}
         className="startup-card_img"/>
       </Link>
       <div className="flex-between mt-5 gap-3">
@@ -64,4 +66,16 @@ const StickieCard = ({post}:{post: StickieCardType}) => {
   )
 }
 
-export default StickieCard
+export const StickieCardSkeleton = () => {
+  return(
+  <>
+    {[0,1,2,3,4].map(( index:number) => (
+      <li key={cn( 'skeleton', index )}>
+        <Skeleton className="startup-card_skeleton" />
+      </li>
+    ))}
+  </>
+  )
+}
+
+export default StickieCard;
