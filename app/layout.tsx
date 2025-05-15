@@ -1,9 +1,9 @@
 import { Toaster } from '@/components/ui/sonner';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import 'easymde/dist/easymde.min.css';
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
-
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -35,6 +35,7 @@ export default function RootLayout({
             duration: 4000,
           }}
         />
+        <SpeedInsights />
       </body>
     </html>
   );
